@@ -6,6 +6,11 @@ import (
 )
 
 var blockEncryptionTable []uint32
+var bInitTable bool
+
+func init() {
+	GenerateEncryptionTable(0x500)
+}
 
 func GenerateEncryptionTable(tableSize int32) {
 	blockEncryptionTable = make([]uint32, tableSize)
@@ -89,4 +94,3 @@ func DecryptWithString(table *[]byte, key string) {
 	seed := HashString(key, 0)
 	Decrypt(table, seed)
 }
-
